@@ -3,28 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Express</title>
-    <link rel = "stylesheet" type="text/css"  href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <link>
 </head>
 <body>
+<div class="Main">
+
+
     <div class="Navbar">
-        <div class="Navbar__items">
+        <div class="Navbar__item">
+            <a href="/">Super-Chat</a>
+        </div>
+        <div class="Navbar__items-wrapper">
             <div class="Navbar__item">
-                Messenger
+                <a href="/">Чат</a>
             </div>
             <div class="Navbar__item">
-                Chat
+                Избранное
             </div>
             <div class="Navbar__item">
-                About as
+                Регистрация
             </div>
             <div class="Navbar__item">
-                Sign up
-            </div>
-            <div class="Navbar__item">
-                Login
+                <a href="/personal-account">Профиль</a>
             </div>
         </div>
     </div>
-    <h1>Express application</h1>
+    <div class="Chat__list">
+        <div class="Input__wrapper">
+            <input placeholder="Найти" type="text">
+        </div>
+        <div class="Chat__item">
+            <div class="Chat__avatar"></div>
+            <div class="Chat__content-wrapper">
+                <div class="Chat__info">
+                    Степура Савелий
+                </div>
+                <div class="Chat__content">
+                    Привет! Как твои дела?
+                </div>
+            </div>
+        </div>
+
+        <div class="Chat__item">
+            <div class="Chat__avatar"></div>
+            <div class="Chat__content-wrapper">
+                <div class="Chat__info">
+                    Иван Иванов
+                </div>
+                <div class="Chat__content">
+                    Незнаю что сказать 😅
+                </div>
+            </div>
+        </div>
+
+        <div class="Chat__item">
+            <div class="Chat__avatar"></div>
+            <div class="Chat__content-wrapper">
+                <div class="Chat__info">
+                    Петр Петров
+                </div>
+                <div class="Chat__content">
+                    Круто! Поздравляю 🥂🔥🍭
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="Chat__messenger">
+        <div class="Input__wrapper-chat">
+            <input placeholder="Написать сообщение..." type="text">
+        </div>
+        <div class="Button__wrapper">
+            <button>Отправить</button>
+        </div>
+    </div>
+</div>
 </body>
 </html>
