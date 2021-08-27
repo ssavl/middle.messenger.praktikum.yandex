@@ -1,5 +1,5 @@
 
-#SuperMessenger
+# SuperMessenger
 
 Ссылка на PR https://github.com/ssavl/middle.messenger.praktikum.yandex/pull/1
 
