@@ -3,9 +3,9 @@
 <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>My Awesome App</title>
+    <title>Messanger</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
-    <link rel="stylesheet" type="text/css" href="./sass/index.sass">
+    <link rel="stylesheet" type="text/css" href="/src/components/pages/Home/Home.sass">
 </head>
 <body>
 <div class="Main">
@@ -18,13 +18,13 @@
                 <a href="/">Чат</a>
             </div>
             <div class="Navbar__item">
-                Избранное
+                <a href="/src/components/pages/Home/Home.hbs">Логин!</a>
             </div>
             <div class="Navbar__item">
-                Регистрация
+                <a href="/src/sign-up.hbs">Регистрация</a>
             </div>
             <div class="Navbar__item">
-                <a href="/personal-account">Профиль</a>
+                <a href="/src/personal-account.hbs">Профиль</a>
             </div>
         </div>
     </div>
@@ -33,5 +33,6 @@
         {{/block}}
     </main>
 </div>
+<script src="/src/index.ts"></script>
 </body>
 </html>
