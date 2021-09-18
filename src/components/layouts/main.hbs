@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Messanger</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+    <link rel="stylesheet" type="text/css" href="/src/components/pages/Home/Home.sass">
+</head>
+<body>
+<div class="Main">
+    <div class="Navbar">
+        <div class="Navbar__item">
+            <a href="/">Super-Chat</a>
+        </div>
+        <div class="Navbar__items-wrapper">
+            <div class="Navbar__item">
+                <a href="/">Чат</a>
+            </div>
+            <div class="Navbar__item">
+                <a href="/src/components/pages/Home/Home.hbs">Логин!</a>
+            </div>
+            <div class="Navbar__item">
+                <a href="/src/sign-up.hbs">Регистрация</a>
+            </div>
+            <div class="Navbar__item">
+                <a href="/src/personal-account.hbs">Профиль</a>
+            </div>
+        </div>
+    </div>
+    <main>
+        {{#block "main"}}
+        {{/block}}
+    </main>
+</div>
+<script src="/src/index.ts"></script>
+</body>
+</html>
