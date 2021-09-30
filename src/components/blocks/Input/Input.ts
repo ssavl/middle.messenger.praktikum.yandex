@@ -9,6 +9,7 @@ import './Input.sass'
 
 export class Input extends Block {
     constructor(props: {
+        id?: string,
         type?: string,
         placeholder?: string,
         value?: string,

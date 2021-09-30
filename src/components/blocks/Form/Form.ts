@@ -17,14 +17,17 @@ export class Form extends Block {
             submit?: (e: any) => void,
         }
     }) {
-        super('form', {value: '',re:  /!"#$%&'()*,-.:;<=>?@[]^_`{|}~/
+        super('div', {
+            value: '',
+            re:  /[^a-zA-ZА-Яа-я0-9]+/g,
+            error: false
         });
     }
 
     onSubmit(e) {
         e.preventDefault()
         const formElement = this.element.getElementsByTagName('input')
-        console.log('Input Value', formElement[0].value);
+        console.log(formElement[0].value);
         // console.log('Input Value', this.props.value);
     }
 
@@ -32,7 +35,7 @@ export class Form extends Block {
         const formElement = this.element.getElementsByTagName('input')
         const error = document.getElementById('error');
 
-        if (String(formElement[0].value).match(this.props.re)) {
+        if (formElement[0].value.match(this.props.re)) {
             console.log('match!')
             error.textContent = 'A filename cannot contain any of the following characters: \/:*?"<>|';
         } else {

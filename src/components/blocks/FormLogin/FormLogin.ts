@@ -17,27 +17,33 @@ export class FormLogin extends Block {
             submit?: (e: any) => void,
         }
     }) {
-        super('div', {value: '',re:  /!"#$%&'()*,-.:;<=>?@[]^_`{|}~/
+        super('div', {
+            value: '',
+            re:  /[^a-zA-ZА-Яа-я0-9]+/g,
+            error: false
         });
     }
 
     onSubmit(e) {
         e.preventDefault()
         const formElement = this.element.getElementsByTagName('input')
-        console.log('Input Value', formElement[0].value);
+        console.log(formElement[0].value);
         // console.log('Input Value', this.props.value);
     }
 
     onBlur() {
         const formElement = this.element.getElementsByTagName('input')
-        const error = document.getElementById('error');
-
-        if (String(formElement[0].value).match(this.props.re)) {
+        const errorLogin = document.getElementById('errorLogin');
+        const errorPassword = document.getElementById('errorPassword')
+        console.log(formElement)
+        if (formElement[0].value.match(this.props.re)) {
             console.log('match!')
-            error.textContent = 'A filename cannot contain any of the following characters: \/:*?"<>|';
+            errorLogin.textContent = 'A filename cannot contain any of the following characters: \/:*?"<>|';
+            errorPassword.textContent = 'A filename cannot contain any of the following characters: \/:*?"<>|';
         } else {
             console.log('Not match')
-            error.textContent = '';
+            errorLogin.textContent = '';
+            errorPassword.textContent = '';
         }
     }
 
@@ -58,6 +64,7 @@ export class FormLogin extends Block {
         })
 
         const InputLogin = new Input( {
+            id: 'InputLogin',
             placeholder: 'Login',
             name: 'login',
             type: 'text',
@@ -68,6 +75,7 @@ export class FormLogin extends Block {
         })
 
         const InputPassword = new Input( {
+            id: 'InputPassword',
             placeholder: 'Password',
             name: 'password',
             type: 'password',
