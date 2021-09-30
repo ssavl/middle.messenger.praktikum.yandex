@@ -5,6 +5,7 @@ import tmpl from './Login.hbs'
 import compile from "../../../modules/Compile";
 import Input from '../../blocks/Input'
 import Button from "../../blocks/Button";
+import FormLogin from '../../blocks/FormLogin'
 
 import './Login.sass'
 
@@ -24,30 +25,12 @@ export class Login extends Block {
 
     protected render(): DocumentFragment {
 
-        const UsernameInput = new Input({
-            type: 'text',
-            placeholder: 'Username',
-            name: 'username'
-        })
-
-        const PasswordInput = new Input({
-            type: 'password',
-            placeholder: 'Password',
-            name: 'password'
-        })
-
-        const SubmitButton = new Button({
-            text: 'Войти',
-            type: 'submit',
-            events: {
-                submit: (e: any) => this.onSubmit(e)
-            },
+        const formLogin = new FormLogin({
+            value: 'qwe',
         })
 
         return compile(tmpl, {
-            usernameInput: UsernameInput,
-            passwordInput: PasswordInput,
-            submitButton: SubmitButton,
+            formLogin: formLogin,
         })
     }
 }

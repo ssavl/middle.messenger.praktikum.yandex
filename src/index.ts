@@ -16,4 +16,4 @@ export function render(query: string, block: Block) {
 }
 
 // app - это класс div в корне DOM-дерева
-render('#app', new Home())
+render('#app', new Login())

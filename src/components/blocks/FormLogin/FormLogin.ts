@@ -1,5 +1,5 @@
 import Block from '../../../modules/Block';
-import tmpl from './Form.hbs';
+import tmpl from './FormLogin.hbs';
 
 // Components
 import Button from '../../blocks/Button'
@@ -8,9 +8,9 @@ import Input from '../../blocks/Input'
 // Modules
 import compile from "../../../modules/Compile";
 
-import './Form.sass'
+import './FormLogin.sass'
 
-export class Form extends Block {
+export class FormLogin extends Block {
     constructor(props: {
         value?: string,
         events?: {
@@ -33,14 +33,17 @@ export class Form extends Block {
 
     onBlur() {
         const formElement = this.element.getElementsByTagName('input')
-        const error = document.getElementById('error');
-
+        const errorLogin = document.getElementById('errorLogin');
+        const errorPassword = document.getElementById('errorPassword')
+        console.log(formElement)
         if (formElement[0].value.match(this.props.re)) {
             console.log('match!')
-            error.textContent = 'A filename cannot contain any of the following characters: \/:*?"<>|';
+            errorLogin.textContent = 'A filename cannot contain any of the following characters: \/:*?"<>|';
+            errorPassword.textContent = 'A filename cannot contain any of the following characters: \/:*?"<>|';
         } else {
             console.log('Not match')
-            error.textContent = '';
+            errorLogin.textContent = '';
+            errorPassword.textContent = '';
         }
     }
 
@@ -51,7 +54,7 @@ export class Form extends Block {
 
     protected render(): DocumentFragment {
 
-        const firstButton = new Button({
+        const SubmitButton = new Button({
             text: 'Отправить',
             class: 'Button__wrapper',
             type: 'submit',
@@ -60,9 +63,10 @@ export class Form extends Block {
             },
         })
 
-        const InputChat = new Input( {
-            placeholder: 'Написать сообщение',
-            name: 'Chat',
+        const InputLogin = new Input( {
+            id: 'InputLogin',
+            placeholder: 'Login',
+            name: 'login',
             type: 'text',
             events: {
                 // input: (e: any) => this.onInput(e)
@@ -70,9 +74,21 @@ export class Form extends Block {
             }
         })
 
+        const InputPassword = new Input( {
+            id: 'InputPassword',
+            placeholder: 'Password',
+            name: 'password',
+            type: 'password',
+            events: {
+                // input: (e: any) => this.onInput(e)
+                change: (e: any) => this.onBlur(),
+            }
+        })
+
         return compile(tmpl, {
-            firstButton: firstButton,
-            inputChat: InputChat,
+            submitButton: SubmitButton,
+            inputLogin: InputLogin,
+            inputPassword: InputPassword,
         })
     }
 }
