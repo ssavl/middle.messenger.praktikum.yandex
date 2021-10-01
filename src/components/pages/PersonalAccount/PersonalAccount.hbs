@@ -1,35 +1,34 @@
-{{#extend 'main'}}
-    {{#content "main"}}
-        <div class="Personal-account">
-            <div class="Personal-account__wrapper">
-                <div class="Personal-account__avatar-wrapper">
-                    <div class="Personal-account__avatar">+</div>
-                </div>
-                <div class="Personal-account__form">
-                    <div class="Personal-account__form-left">
-                        <div class="Personal-account__input-wrapper">
-                            <input type="text" name="name" placeholder="Имя">
-                        </div>
-                        <div class="Personal-account__input-wrapper">
-                            <input type="text" name="name" placeholder="Фамилия">
-                        </div>
-                        <div class="Personal-account__input-wrapper">
-                            <input type="text" name="name" placeholder="Email">
-                        </div>
+<main>
+    {{{Navbar}}}
+    <div class="Personal-account">
+        <div class="Personal-account__wrapper">
+            <div class="Personal-account__avatar-wrapper">
+                <div class="Personal-account__avatar">+</div>
+            </div>
+            <div class="Personal-account__form">
+                <div class="Personal-account__form-left">
+                    <div class="Personal-account__input-wrapper">
+                        <input type="text" name="name" placeholder="Имя">
                     </div>
-                    <div class="Personal-account__form-right">
-                        <div class="Personal-account__input-wrapper">
-                            <input type="text" name="name" placeholder="Пароль">
-                        </div>
-                        <div class="Personal-account__input-wrapper">
-                            <input type="text" name="name" placeholder="Пароль еще раз">
-                        </div>
-                        <div class="Personal-account__button-wrapper">
-                            <button type="submit">Сохранить</button>
-                        </div>
+                    <div class="Personal-account__input-wrapper">
+                        <input type="text" name="name" placeholder="Фамилия">
+                    </div>
+                    <div class="Personal-account__input-wrapper">
+                        <input type="text" name="name" placeholder="Email">
+                    </div>
+                </div>
+                <div class="Personal-account__form-right">
+                    <div class="Personal-account__input-wrapper">
+                        <input type="text" name="name" placeholder="Пароль">
+                    </div>
+                    <div class="Personal-account__input-wrapper">
+                        <input type="text" name="name" placeholder="Пароль еще раз">
+                    </div>
+                    <div class="Personal-account__button-wrapper">
+                        <button type="submit">Сохранить</button>
                     </div>
                 </div>
             </div>
         </div>
-    {{/content}}
-{{/extend}}
+    </div>
+</main>

@@ -15,8 +15,10 @@ export class Input extends Block {
         value?: string,
         name?: string,
         events?: {
-            input?: (e?: any) => void ,
-            change?: (e?: any) => void   }
+            input?: (e?: any) => void,
+            change?: (e?: any) => void,
+            click?: (e?: any) => void,
+        }
     }) {
         super('div', props);
     }

@@ -27,26 +27,33 @@ export class Form extends Block {
     onSubmit(e) {
         e.preventDefault()
         const formElement = this.element.getElementsByTagName('input')
-        console.log(formElement[0].value);
-        // console.log('Input Value', this.props.value);
+        const formData = {}
+        for (let element of formElement) {
+            formData[element.name] = element.value
+        }
+        console.log('Input Value', formData);
+        this.onFocus(e)
+        this.onBlur(e)
     }
 
-    onBlur() {
-        const formElement = this.element.getElementsByTagName('input')
-        const error = document.getElementById('error');
-
-        if (formElement[0].value.match(this.props.re)) {
-            console.log('match!')
-            error.textContent = 'A filename cannot contain any of the following characters: \/:*?"<>|';
+    onBlur(e) {
+        console.log('onBlur')
+        const errorMessage = document.getElementById('error');
+        if (e.target.value.match(this.props.re)) {
+            errorMessage.textContent = 'A filename cannot contain any of the following characters: \/:*?"<>|';
         } else {
-            console.log('Not match')
-            error.textContent = '';
+            errorMessage.textContent = '';
         }
     }
 
-    onInput(e) {
-        // e.preventDefault();
-        // this.setProps({value: e.target.value})
+    onFocus(e) {
+        console.log('onFocus')
+        const errorMessage = document.getElementById('error');
+        if (e.target.value.match(this.props.re)) {
+            errorMessage.textContent = 'A filename cannot contain any of the following characters: \/:*?"<>|';
+        } else {
+            errorMessage.textContent = '';
+        }
     }
 
     protected render(): DocumentFragment {
@@ -60,13 +67,14 @@ export class Form extends Block {
             },
         })
 
+
         const InputChat = new Input( {
-            placeholder: 'Написать сообщение',
-            name: 'Chat',
+            placeholder: 'Message',
+            name: 'message',
             type: 'text',
             events: {
-                // input: (e: any) => this.onInput(e)
-                change: (e: any) => this.onBlur(),
+                change: (e: any) => this.onBlur(e),
+                click: (e: any) => this.onFocus(e),
             }
         })
 
