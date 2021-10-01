@@ -5,6 +5,7 @@ import tmpl from './PersonalAccount.hbs';
 import Button from '../../blocks/Button'
 import Input from '../../blocks/Input'
 import Navbar from '../../blocks/Navbar'
+import PersonalAccountForm from '../../blocks/PersonalAccountForm'
 
 // Modules
 import compile from "../../../modules/Compile";
@@ -27,6 +28,8 @@ export class PersonalAccount extends Block {
     protected render(): DocumentFragment {
 
         const navbar = new Navbar()
+
+        const personalAccountForm = new PersonalAccountForm()
 
 
         const firstButton = new Button({
@@ -52,6 +55,7 @@ export class PersonalAccount extends Block {
             firstButton: firstButton,
             inputChat: InputChat,
             Navbar: navbar,
+            personalAccountForm: personalAccountForm
         })
     }
 }
