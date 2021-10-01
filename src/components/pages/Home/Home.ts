@@ -6,6 +6,8 @@ import Button from '../../blocks/Button'
 import ChatItem from '../../blocks/ChatItem'
 import Input from '../../blocks/Input'
 import Form from '../../blocks/Form'
+import Navbar from "../../blocks/Navbar";
+
 
 // Modules
 import compile from "../../../modules/Compile";
@@ -27,6 +29,9 @@ export class Home extends Block {
  }
 
  protected render(): DocumentFragment {
+
+     const navbar = new Navbar()
+
 
      const firstButton = new Button({
          text: 'Отправить',
@@ -76,6 +81,7 @@ export class Home extends Block {
          inputSearch: InputSearch,
          inputChat: InputChat,
          form: form,
+         Navbar: navbar,
      })
  }
 }
