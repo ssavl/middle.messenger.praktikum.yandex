@@ -4,10 +4,10 @@
   "description": "### Откройте pull request в ветку main из ветки, где вы разрабатывали проект, и добавьте ссылку на этот pr в README.md в ветке main. Название pull request может быть любое.",
   "main": "server.js",
   "scripts": {
-    "client":  "parcel src/index.hbs",
-    "build":  "parcel build src/index.hbs",
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html",
     "server": "node server.js",
-    "start": "concurrently \"npm run client\" \"npm run server\"",
+    "start": "npm run build && npm run server",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -21,11 +21,20 @@
     "url": "https://github.com/ssavl/middle.messenger.praktikum.yandex/issues"
   },
   "dependencies": {
-    "@inventory/parcel-plugin-handlebars": "^1.0.0",
     "concurrently": "^6.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
     "express": "^4.17.1",
+    "nanoid": "^3.1.25",
     "node-sass": "^6.0.1",
+    "parcel-plugin-handlebars-precompile": "^1.0.2",
     "sass": "^1.38.1"
   },
-  "homepage": "https://github.com/ssavl/middle.messenger.praktikum.yandex#readme"
+  "homepage": "https://github.com/ssavl/middle.messenger.praktikum.yandex#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.0.0-rc.0",
+    "@typescript-eslint/eslint-plugin": "^4.31.1",
+    "@typescript-eslint/parser": "^4.31.1",
+    "eslint": "^7.32.0",
+    "stylelint": "^13.13.1"
+  }
 }

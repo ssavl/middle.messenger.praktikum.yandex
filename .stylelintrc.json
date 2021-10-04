@@ -1,0 +1,14 @@
+{
+  "plugins": [
+    "style-sass"
+  ],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "string-quotes": "double"
+  },
+  "ignoreFiles": [
+    "build/*",
+    "dist/*",
+    "node-modules/*"
+  ]
+}
