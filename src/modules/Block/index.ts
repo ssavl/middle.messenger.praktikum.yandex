@@ -18,9 +18,15 @@ export default class Block <P = any> {
 
     protected id = nanoid()
     private readonly _meta: BlockMeta
+
     protected _element: any
     protected readonly props : P
+    protected children : {[id: string]: Block} = {}
+
     eventBus: () => EventBus<Events>
+
+    protected state: any = {}
+    protected refs: {[key:string]: HTMLElement} = {}
 
     public constructor(tagName: string, props?: P) {
         const eventBus = new EventBus<Events>();
@@ -30,7 +36,10 @@ export default class Block <P = any> {
             props
         };
 
+        this.getStateFromProps(props)
+
         this.props = this._makePropsProxy(props || {} as P);
+        this.state  = this._makePropsProxy(this.state);
 
         this.eventBus = () => eventBus;
 
@@ -38,6 +47,8 @@ export default class Block <P = any> {
 
         eventBus.emit(Block.EVENTS.INIT, this.props);
     }
+
+
 
     _registerEvents(eventBus) {
         eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
@@ -97,7 +108,7 @@ export default class Block <P = any> {
         this._addEvents()
     }
 
-    protected render(): DocumentFragment {
+    protected render(): any {
         return new DocumentFragment()
     }
 
@@ -151,6 +162,39 @@ export default class Block <P = any> {
         Object.entries(events).forEach(([event, listener]) => {
             this._element!.addEventListener(event, listener)
         })
+    }
+
+    _compile(): DocumentFragment {
+        const fragment = document.createElement('template')
+
+        // const components: Record<string, Block> = {}
+
+        // Заменяю все компоненты в контексте на заглушки
+        // Object.entries(props).forEach(([name, value]) => {
+        //     if(value instanceof Block) {
+        //
+        //         // Сохраняю компоненты
+        //         components[value.id] = value
+        //         props[name] = `<div id='id-${value.id}'></div>`
+        //     }
+        // })
+        // Рендерю шаблоны
+        const template = Handlebars.compile(this.render())
+        fragment.innerHTML = template({...this.state, ...this.props, children: this.children, refs: this.refs})
+
+        // Заменяю заглушки на компоненты
+        Object.entries(this.children).forEach(([id, component]) => {
+
+            // Ищем заглушку по id
+            const stub = fragment.content.querySelector(`#id-${id}`)
+
+            if (!stub) {
+                return
+            }
+            // Заменяем заглушку на component._element
+            stub.replaceWith(component.getContent())
+        })
+        return fragment.content
     }
 
     _createDocumentElement(tagName) {
