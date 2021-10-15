@@ -1,106 +1,53 @@
-import AuthApi from '../api/AuthApi';
-import { router } from '../index';
-import store, { storeUserInitial } from '../store/Store';
-import deepEncodeHTML from '../utils/deepEncodeHTML';
-
-
-export type SignUpData = {
-    first_name: string,
-    second_name: string,
-    login: string,
-    email: string,
-    password: string,
-    phone: string
-}
-
-export type SignInData = {
-    login: string,
-    password: string,
-}
-
-export type UserFromServer = {
-    id: number,
-    first_name: string,
-    second_name: string,
-    login: string,
-    email: string,
-    phone: string
-    display_name: string | null,
-    avatar: string | null,
-}
-export type UserPassword = string
-
+import {AuthAPI, LoginData, SignupData, UserData} from '../api/AuthAPI';
+import { store } from '../store';
+import {deleteUser, setError, setUser} from '../store/user';
 
 class AuthController {
+    private api: AuthAPI;
 
-
-    static signUp(data: SignUpData): void {
-        AuthApi.signUp(JSON.stringify(deepEncodeHTML(data)))
-            .then(() => {
-                AuthController.getUser(() => {
-                    router.go('/')
-                })
-            })
-            .catch(_xhr => {
-                const xhr = _xhr as XMLHttpRequest
-                const {reason} = JSON.parse(xhr.response) as { reason: string }
-                if (reason === 'Login already exists') {
-                    alert(reason)
-                }
-            })
-
+    constructor() {
+        this.api = new AuthAPI()
     }
 
-
-    static getUser(successCallback?: () => void): void {
-        AuthApi.getUser()
-            .then(xhr => {
-                store.userData = deepEncodeHTML(JSON.parse(xhr.response)) as UserFromServer
-                if (successCallback === undefined) {
-                    return
-                }
-                successCallback()
-            })
-            .catch(() => {
-                store.userData = {...storeUserInitial.userData}
-                router.go('/login')
-            })
+    async signup(data: SignupData) {
+        try {
+            await this.api.signup(data);
+            await this.fetchUser();
+        } catch (e) {
+            store.dispatch(setError(e as { reason: string }));
+        }
     }
 
-    static checkUserLoggedIn(): Promise<XMLHttpRequest> {
-        return AuthApi.getUser()
+    async login(data: LoginData) {
+        try {
+            await this.api.login(data);
+            await this.fetchUser();
+        } catch (e) {
+            store.dispatch(setError(e as { reason: string }));
+        }
     }
 
+    async logout() {
+        try {
+            await this.api.logout();
 
-    static signIn(data: SignInData): void {
-        AuthApi.signIn(JSON.stringify(deepEncodeHTML(data)))
-            .then(xhr => {
-                if (xhr.response === 'OK') {
-                    AuthController.getUser(() => {
-                        router.go('/')
-                    })
-                }
-            })
-            .catch(_xhr => {
-                const xhr = _xhr as XMLHttpRequest
-                const {reason} = JSON.parse(xhr.response) as { reason: string }
-                if (reason === 'User already in system') {
-                    AuthController.getUser(() => {
-                        router.go('/')
-                    })
-                } else {
-                    alert(reason)
-                }
-            })
+            store.dispatch(deleteUser());
+        } catch (e) {
+            store.dispatch(setError(e as { reason: string }));
+        }
     }
 
-    static logout(): void {
-        AuthApi.logout()
-            .then(() => {
-                router.go('/login')
-            })
-    }
+    async fetchUser(): Promise<UserData | void> {
+        try {
+            const user = await this.api.read();
 
+            store.dispatch(setUser(user));
+
+            return user;
+        } catch (e) {
+            store.dispatch(deleteUser());
+        }
+    }
 }
 
-export default AuthController
+export default new AuthController();

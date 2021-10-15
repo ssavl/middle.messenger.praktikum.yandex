@@ -1,10 +1,4 @@
-import Block from '../Block'
-
-// function render(query, block) {
-//     const root = document.querySelector(query);
-//     root.textContent = block.getContent();
-//     return root;
-// }
+import Block from '../Block';
 
 class Route {
     private pathname: string;
@@ -27,6 +21,8 @@ class Route {
     }
 
     leave() {
+        console.log(this.block);
+
         if (this.block) {
             this.block.getContent().remove();
         }
@@ -41,19 +37,19 @@ class Route {
             this.block = new this.blockClass();
         }
 
-        const root = document.querySelector(this.props.rootQuery)
+        const root = document.querySelector(this.props.rootQuery);
 
         if (!root) {
-            throw new Error('Root not founddddd')
+            throw new Error('Root not found');
         }
 
         root.innerHTML = '';
-        root.appendChild(this.block.getContent())
+        root.appendChild(this.block.getContent());
     }
 }
 
 class Router {
-    private static __instance : Router;
+    private static __instance: Router;
     private routes: Route[] = [];
     private history = window.history;
     private currentRoute: Route | null = null;
@@ -77,7 +73,7 @@ class Router {
     start() {
         window.onpopstate = () => {
             this._onRoute(window.location.pathname);
-        }
+        };
 
         this._onRoute(window.location.pathname);
     }
@@ -93,12 +89,18 @@ class Router {
             this.currentRoute.leave();
         }
 
+        this.currentRoute = route;
+
         route.render();
     }
 
     go(pathname: string) {
         this.history.pushState({}, '', pathname);
         this._onRoute(pathname);
+    }
+
+    getRoute(pathname: string) {
+        return this.routes.find(route => route.match(pathname));
     }
 
     back() {
@@ -108,10 +110,16 @@ class Router {
     forward() {
         this.history.forward();
     }
-
-    getRoute(pathname: string) {
-        return this.routes.find(route => route.match(pathname));
-    }
 }
 
-export default Router
+export default Router;
+
+export function withRouter(Component: typeof Block) {
+    return class WithRouter extends Component {
+        constructor(props: any) {
+            const router = new Router()
+
+            super({...props, router: router});
+        }
+    }
+}

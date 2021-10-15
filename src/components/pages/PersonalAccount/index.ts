@@ -1,1 +1,0 @@
-export { PersonalAccount as default } from './PersonalAccount'
