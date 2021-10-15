@@ -1,7 +1,7 @@
 
 # SuperMessenger
 
-Ссылка на PR https://github.com/ssavl/middle.messenger.praktikum.yandex/pull/2
+Ссылка на PR https://github.com/ssavl/middle.messenger.praktikum.yandex/pull/4
 
 ### Проект по созданию мессенджера в рамках курса Яндекс Практикума для мидл фронтенд разработчиков
 

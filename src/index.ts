@@ -1,19 +1,33 @@
-import Block from "./modules/Block";
-import Home from './components/pages/Home'
-import Login from './components/pages/Login'
+import Block from './modules/Block';
+import registerComponent from './utils/registerComponent';
+import Router from './modules/Router';
+import AuthController from './controllers/AuthController';
 
-export function render(query: string, block: Block) {
-    const root = document.querySelector(query)
 
-    if (!root) {
-        throw new Error('Root not found')
-    }
+// Pages
+import HomePage from './pages/Home';
+import LoginPage from './pages/Login';
+import SignupPage from './pages/SignUp';
+import ProfilePage from './pages/Profile';
+import Page500 from "./pages/page500";
+import Page404 from "./pages/page404";
 
-    root.innerHTML = ''
-    root.appendChild(block.getContent())
+const components = require('./components/**/index.ts') as {[key: string]: { default: typeof Block }};
 
-    return root
-}
+Object.values(components).forEach((component) => {
+    registerComponent(component.default);
+})
 
-// app - это класс div в корне DOM-дерева
-render('#app', new Login())
+AuthController.fetchUser()
+    .then(() => {
+        const router = new Router();
+
+        router
+            .use('/', HomePage)
+            .use('/login', LoginPage)
+            .use('/profile', ProfilePage)
+            .use('/signup', SignupPage)
+            .use('/500', Page500)
+            .use('/*', Page404)
+            .start()
+    });
