@@ -1,4 +1,4 @@
-import {AuthAPI, LoginData, SignupData, UserData} from '../api/AuthAPI';
+import { AuthAPI, LoginData, SignupData, UserData } from '../api/AuthApi';
 import { store } from '../store';
 import {deleteUser, setError, setUser} from '../store/user';
 
