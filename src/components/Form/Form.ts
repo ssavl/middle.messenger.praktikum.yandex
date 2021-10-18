@@ -56,6 +56,10 @@ export class Form extends Block {
         });
     }
 
+    static getName() {
+        return 'Form'
+    }
+
     render() {
         return (
             `<form>

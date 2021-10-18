@@ -5,13 +5,13 @@ import './styles.sass'
 
 interface LinkProps {
     type: string;
-    class: string;
+    className: string;
     text: string;
     to: string;
 }
 
 export class Button extends Block {
-    constructor(props: LinkProps) {
+    constructor({type, className, text, to}: LinkProps) {
 
         const onBlur = () => {
             console.log('blur')
@@ -25,15 +25,18 @@ export class Button extends Block {
             e.preventDefault();
         }
 
-        super({...props, events: {
+        super({type, className, text, to, events: {
             click: onClick,
             blur : onBlur,
         }});
     }
 
-    render() {
-        return `<div class="Button__wrapper">
-                    <button type="{{type}}" class="{{class}}">{{text}}</button>
-                </div>`;
+    static getName() {
+        return 'Button'
+    }
+
+    protected render(): string {
+        // language=hbs
+        return `<button type="button">{{text}}</button>`
     }
 }

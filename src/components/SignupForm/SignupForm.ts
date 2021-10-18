@@ -56,6 +56,11 @@ export class SignupForm extends Block {
         });
     }
 
+
+    static getName() {
+        return 'SignupForm'
+    }
+
     render() {
         return (
             `<form>

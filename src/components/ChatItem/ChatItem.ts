@@ -25,6 +25,10 @@ export class ChatItem extends Block {
             }});
     }
 
+    static getName() {
+        return 'ChatItem'
+    }
+
     render() {
         return (
             `<div class="Chat__item">

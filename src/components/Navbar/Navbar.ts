@@ -10,6 +10,11 @@ export class Navbar extends Block {
         super();
     }
 
+
+    static getName() {
+        return 'Navbar'
+    }
+
     render() {
         return (
             `<div class="Navbar">

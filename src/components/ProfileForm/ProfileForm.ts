@@ -28,6 +28,11 @@ export class ProfileForm extends Block {
             }});
     }
 
+
+    static getName() {
+        return 'ProfileForm'
+    }
+
     render() {
         return (
             `<form>

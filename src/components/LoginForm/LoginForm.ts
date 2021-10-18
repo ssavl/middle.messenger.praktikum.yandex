@@ -28,6 +28,11 @@ export class LoginForm extends Block {
             }});
     }
 
+
+    static getName() {
+        return 'LoginForm'
+    }
+
     render() {
         return (
             `<form>

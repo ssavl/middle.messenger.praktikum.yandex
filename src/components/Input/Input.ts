@@ -36,6 +36,10 @@ export class Input extends Block {
 
     }
 
+    static getName() {
+        return 'Input'
+    }
+
     render() {
         return (
             `<input class="Input" id="{{id}}" type="{{type}}" placeholder="{{placeholder}}" name="{{name}}" value="{{value}}">`
