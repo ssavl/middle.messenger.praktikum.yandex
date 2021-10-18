@@ -7,7 +7,7 @@ import AuthController from './controllers/AuthController';
 // Pages
 import HomePage from './pages/Home';
 import LoginPage from './pages/Login';
-import SignupPage from './pages/SignUp';
+import SignupPage from './pages/Signup';
 import ProfilePage from './pages/Profile';
 import Page500 from "./pages/page500";
 import Page404 from "./pages/page404";
