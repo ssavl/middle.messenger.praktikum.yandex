@@ -15,7 +15,6 @@ import Page404 from "./pages/page404";
 const components = require('./components/**/index.ts') as {[key: string]: { default: typeof Block }};
 
 Object.values(components).forEach((component) => {
-    console.log('component', component)
     registerComponent(component.default);
 })
 

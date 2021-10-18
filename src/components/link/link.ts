@@ -19,6 +19,11 @@ export class Link extends Block {
         super({...props, events: { click: onClick }});
     }
 
+
+    static getName() {
+        return 'Link'
+    }
+
     render() {
         // language=hbs
         return `<a href="{{to}}">{{text}}</a>`;
