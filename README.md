@@ -18,3 +18,5 @@
 
 - Стэнд с проектом https://lucid-leakey-476aa8.netlify.app
 - Макеты на Figma https://www.figma.com/file/BFhnHVSYj0e4q8gjSTB0SK/Yandex-practicum?node-id=0%3A1
+
+Делаю как могу. Времени немного не хватает. В четвертом спринте почищу проект
