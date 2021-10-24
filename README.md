@@ -10,7 +10,7 @@
 #### Билдим
 `npm run build`
 
-Ссылка на PR https://github.com/ssavl/middle.messenger.praktikum.yandex/pull/4
+Ссылка на PR https://github.com/ssavl/middle.messenger.praktikum.yandex/pull/5
 
 ### Проект по созданию мессенджера в рамках курса Яндекс Практикума для мидл фронтенд разработчиков
 
