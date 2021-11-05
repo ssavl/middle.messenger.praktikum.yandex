@@ -1,8 +1,6 @@
 
 # SuperMessenger
 
-Ссылка на PR https://github.com/ssavl/middle.messenger.praktikum.yandex/pull/5
-
 #### Билдим и запускаем проект на локальном сервере
 `npm run start`
 #### Собираем и запускаем dev-сервер
